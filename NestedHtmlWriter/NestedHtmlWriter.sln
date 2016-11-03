@@ -2,10 +2,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NestedHtmlWriter", "NestedHtmlWriter\NestedHtmlWriter.csproj", "{A3398B37-A4CF-4411-987D-EC50B72F8FC0}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestNestedHtmlWriter", "TestNestedHtmlWriter\TestNestedHtmlWriter.csproj", "{DD0C4EF3-C856-445C-8CCF-B016BCEB5C13}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{891D8FCB-87DE-4B89-8886-D83C96357C51}"
 	ProjectSection(SolutionItems) = preProject
 		arc.cmd = arc.cmd
@@ -24,18 +20,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A3398B37-A4CF-4411-987D-EC50B72F8FC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A3398B37-A4CF-4411-987D-EC50B72F8FC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A3398B37-A4CF-4411-987D-EC50B72F8FC0}.KinoLaboRelease|Any CPU.ActiveCfg = KinoLaboRelease|Any CPU
-		{A3398B37-A4CF-4411-987D-EC50B72F8FC0}.KinoLaboRelease|Any CPU.Build.0 = KinoLaboRelease|Any CPU
-		{A3398B37-A4CF-4411-987D-EC50B72F8FC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A3398B37-A4CF-4411-987D-EC50B72F8FC0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DD0C4EF3-C856-445C-8CCF-B016BCEB5C13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DD0C4EF3-C856-445C-8CCF-B016BCEB5C13}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DD0C4EF3-C856-445C-8CCF-B016BCEB5C13}.KinoLaboRelease|Any CPU.ActiveCfg = KinoLaboRelease|Any CPU
-		{DD0C4EF3-C856-445C-8CCF-B016BCEB5C13}.KinoLaboRelease|Any CPU.Build.0 = KinoLaboRelease|Any CPU
-		{DD0C4EF3-C856-445C-8CCF-B016BCEB5C13}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DD0C4EF3-C856-445C-8CCF-B016BCEB5C13}.Release|Any CPU.Build.0 = Release|Any CPU
 		{396659F7-D728-49CD-B0F5-0AFB2F3051F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{396659F7-D728-49CD-B0F5-0AFB2F3051F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{396659F7-D728-49CD-B0F5-0AFB2F3051F8}.KinoLaboRelease|Any CPU.ActiveCfg = Release|Any CPU

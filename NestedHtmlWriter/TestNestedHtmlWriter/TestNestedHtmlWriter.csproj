@@ -107,11 +107,6 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NestedHtmlWriter\NestedHtmlWriter.csproj">
-      <Name>NestedHtmlWriter</Name>
-      <Project>{A3398B37-A4CF-4411-987D-EC50B72F8FC0}</Project>
-      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
-    </ProjectReference>
     <Reference Include="nunit.framework">
       <Name>nunit.framework</Name>
       <HintPath>nunit.framework.dll</HintPath>
