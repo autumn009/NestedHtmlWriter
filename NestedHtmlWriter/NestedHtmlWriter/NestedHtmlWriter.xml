@@ -1,0 +1,1010 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NestedHtmlWriter40</name>
+    </assembly>
+    <members>
+        <member name="T:NestedHtmlWriter.NhDocumentType">
+            <summary>
+            文書の種類を示します
+            </summary>
+        </member>
+        <member name="F:NestedHtmlWriter.NhDocumentType.Xhtml11">
+            <summary>
+            XHTML 1.1を示します
+            </summary>
+        </member>
+        <member name="F:NestedHtmlWriter.NhDocumentType.Xhtml10Strict">
+            <summary>
+            XHTML 1.0 Strictを示します
+            </summary>
+        </member>
+        <member name="F:NestedHtmlWriter.NhDocumentType.Xhtml10Transitional">
+            <summary>
+            XHTML 1.0 Transitionalを示します
+            </summary>
+        </member>
+        <member name="T:NestedHtmlWriter.NhSetting">
+            <summary>
+            NestedHtmlWriterのグローバルな設定を保持します。
+            </summary>
+        </member>
+        <member name="F:NestedHtmlWriter.NhSetting.StrictNestChecking">
+            <summary>
+            厳密なチェックを行うかどうかを指定します。デフォルトは行います。
+            </summary>
+            <remarks>
+            厳密なチェックを行うかどうかを指定します。デフォルトは行います。
+            厳密なチェックを行うと、多くの正しくない出力でNhException例外を発生させることができ、安全です。
+            しかし、速度が重要な場合にはfalseとしてチェックを省くことができます。
+            </remarks>
+        </member>
+        <member name="T:NestedHtmlWriter.NhException">
+            <summary>
+            不正な組み合わせの出力を行おうとしている状況で投げられる例外です。
+            </summary>
+        </member>
+        <member name="M:NestedHtmlWriter.NhException.#ctor">
+            <summary>
+            NhExceptionクラスのコンストラクタです。
+            </summary>
+        </member>
+        <member name="M:NestedHtmlWriter.NhException.#ctor(System.String)">
+            <summary>
+            NhExceptionクラスのコンストラクタです。
+            </summary>
+        </member>
+        <member name="M:NestedHtmlWriter.NhException.#ctor(System.String,System.Exception)">
+            <summary>
+            NhExceptionクラスのコンストラクタです。
+            </summary>
+        </member>
+        <member name="T:NestedHtmlWriter.NhBase">
+            <summary>
+            NestedHtmlWriterの全ての出力クラスの基底となるクラスです。
+            </summary>
+        </member>
+        <member name="F:NestedHtmlWriter.NhBase.writer">
+            <summary>
+            出力に使用するライターです。
+            </summary>
+        </member>
+        <member name="F:NestedHtmlWriter.NhBase.parent">
+            <summary>
+            親の要素クラスを保持します。
+            </summary>
+        </member>
+        <member name="M:NestedHtmlWriter.NhBase.checkLock">
+            <summary>
+            ロックされているか調べて、例外を投げます。
+            </summary>
+            <remarks>
+            厳密なチェックを行わない場合は呼び出してはいけません。
+            </remarks>
+        </member>
+        <member name="M:NestedHtmlWriter.NhBase.#ctor(System.IO.TextWriter,NestedHtmlWriter.NhBase)">
+            <summary>
+            NhBaseクラスのコンストラクタです。
+            </summary>
+            <param name="writer">出力に使用するライター</param>
+            <param name="parent">親の要素クラス</param>
+        </member>
+        <member name="M:NestedHtmlWriter.NhBase.WriteRawString(System.String)">
+            <summary>
+            一切の加工を行わず文字列を出力します。
+            既にXMLのフラグメント形式になったデータを出力するために使用します。
+            利用は推奨しません。
+            </summary>
+            <param name="rawString">既にXMLのフラグメント形式になった文字列</param>
+        </member>
+        <member name="M:NestedHtmlWriter.NhBase.WriteAttribute(System.String,System.String)">
+            <summary>
+            任意の属性を出力します。
+            </summary>
+            <param name="name">属性の名前。名前空間使用時には、接頭辞:ローカル名の形式。</param>
+            <param name="val">属性の値</param>
+        </member>
+        <member name="M:NestedHtmlWriter.NhBase.WriteClassAttr(System.String)">
+            <summary>
+            class属性を出力します。
+            </summary>
+            <param name="val">属性の値</param>
+        </member>
+        <member name="M:NestedHtmlWriter.NhBase.WriteIDAttr(System.String)">
+            <summary>
+            id属性を出力します。
+            </summary>
+            <param name="val">属性の値</param>
+        </member>
+        <member name="T:NestedHtmlWriter.NhEmpty">
+            <summary>
+            空要素を表現する汎用クラスです。継承して使います。
+            </summary>
+        </member>
+        <member name="M:NestedHtmlWriter.NhEmpty.#ctor(System.IO.TextWriter,System.String,NestedHtmlWriter.NhBase)">
+            <summary>
+            NhEmptyクラスのコンストラクタです。
+            </summary>
+            <param name="writer">出力に使用するライター</param>
+            <param name="tagName">タグ名。名前空間使用時には、接頭辞:ローカル名の形式</param>
+            <param name="parent">親の要素クラス</param>
+        </member>
+        <member name="M:NestedHtmlWriter.NhEmpty.Dispose">
+            <summary>
+            確保した資源を解放します。
+            </summary>
+        </member>
+        <member name="T:NestedHtmlWriter.NhNotEmpty">
+            <summary>
+            空要素ではない要素を表現する汎用クラスです。継承して使います。
+            </summary>
+        </member>
+        <member name="M:NestedHtmlWriter.NhNotEmpty.confirmStartTagClose">
+            <summary>
+            開始タグが閉じているかどうか確認します。閉じていない場合は'&gt;'を出力して閉じます。
+            </summary>
+        </member>
+        <member name="M:NestedHtmlWriter.NhNotEmpty.WriteRawString(System.String)">
+            <summary>
+            一切の加工を行わず文字列を出力します。
+            既にXMLのフラグメント形式になったデータを出力するために使用します。
+            利用は推奨しません。
+            </summary>
+            <param name="rawString">既にXMLのフラグメント形式になった文字列</param>
+        </member>
+        <member name="M:NestedHtmlWriter.NhNotEmpty.#ctor(System.IO.TextWriter,System.String,NestedHtmlWriter.NhBase)">
+            <summary>
+            NhNotEmptyクラスのコンストラクタです。
+            </summary>
+            <param name="writer">出力に使用するライター</param>
+            <param name="tagName">タグ名。名前空間使用時には、接頭辞:ローカル名の形式</param>
+            <param name="parent">親の要素クラス</param>
+        </member>
+        <member name="M:NestedHtmlWriter.NhNotEmpty.Dispose">
+            <summary>
+            確保した資源を解放します。
+            </summary>
+        </member>
+        <member name="T:NestedHtmlWriter.NhTextAvailable">
+            <summary>
+            内容にテキストを許す要素を表現する汎用クラスです。継承して使います。
+            </summary>
+        </member>
+        <member name="M:NestedHtmlWriter.NhTextAvailable.#ctor(System.IO.TextWriter,System.String,NestedHtmlWriter.NhBase)">
+            <summary>
+            NhTextAvailableクラスのコンストラクタです。
+            </summary>
+            <param name="writer">出力に使用するライター</param>
+            <param name="tagName">タグ名。名前空間使用時には、接頭辞:ローカル名の形式</param>
+            <param name="parent">親の要素クラス</param>
+        </member>
+        <member name="M:NestedHtmlWriter.NhTextAvailable.WriteText(System.String)">
+            <summary>
+            テキストを出力します。XMLで特別な意味を持つ文字は、定義済み実体参照に置き換えられます。
+            </summary>
+            <param name="text">出力するテキスト</param>
+        </member>
+        <member name="T:NestedHtmlWriter.NhInline">
+            <summary>
+            内容がインラインとなる要素を表現する汎用クラスです。継承して使います。
+            </summary>
+        </member>
+        <member name="M:NestedHtmlWriter.NhInline.#ctor(System.IO.TextWriter,System.String,NestedHtmlWriter.NhBase)">
+            <summary>
+            NhInlineクラスのコンストラクタです。
+            </summary>
+            <param name="writer">出力に使用するライター</param>
+            <param name="tagName">タグ名。名前空間使用時には、接頭辞:ローカル名の形式</param>
+            <param name="parent">親の要素クラス</param>
+        </member>
+        <member name="M:NestedHtmlWriter.NhInline.CreateStrong">
+            <summary>
+            strong要素に対応するオブジェクトを生成します。
+            </summary>
+            <returns>作成されたオブジェクト</returns>
+        </member>
+        <member name="M:NestedHtmlWriter.NhInline.CreateEm">
+            <summary>
+            em要素に対応するオブジェクトを生成します。
+            </summary>
+            <returns>作成されたオブジェクト</returns>
+        </member>
+        <member name="M:NestedHtmlWriter.NhInline.CreateSpan">
+            <summary>
+            span要素に対応するオブジェクトを生成します。
+            </summary>
+            <returns>作成されたオブジェクト</returns>
+        </member>
+        <member name="M:NestedHtmlWriter.NhInline.CreateQ">
+            <summary>
+            q要素に対応するオブジェクトを生成します。
+            </summary>
+            <returns>作成されたオブジェクト</returns>
+        </member>
+        <member name="M:NestedHtmlWriter.NhInline.CreateA">
+            <summary>
+            a要素に対応するオブジェクトを生成します。
+            </summary>
+            <returns>作成されたオブジェクト</returns>
+        </member>
+        <member name="M:NestedHtmlWriter.NhInline.CreateImg">
+            <summary>
+            img要素に対応するオブジェクトを生成します。
+            </summary>
+            <returns>作成されたオブジェクト</returns>
+        </member>
+        <member name="M:NestedHtmlWriter.NhInline.CreateBr">
+            <summary>
+            br要素に対応するオブジェクトを生成します。
+            </summary>
+            <returns>作成されたオブジェクト</returns>
+        </member>
+        <member name="M:NestedHtmlWriter.NhInline.CreateInput">
+            <summary>
+            input要素に対応するオブジェクトを生成します。
+            </summary>
+            <returns>作成されたオブジェクト</returns>
+        </member>
+        <member name="M:NestedHtmlWriter.NhInline.CreateLabel">
+            <summary>
+            label要素に対応するオブジェクトを生成します。
+            </summary>
+            <returns>作成されたオブジェクト</returns>
+        </member>
+        <member name="M:NestedHtmlWriter.NhInline.CreateSelect">
+            <summary>
+            select要素に対応するオブジェクトを生成します。
+            </summary>
+            <returns>作成されたオブジェクト</returns>
+        </member>
+        <member name="M:NestedHtmlWriter.NhInline.CreateTextArea(System.Int32,System.Int32)">
+            <summary>
+            textarea要素に対応するオブジェクトを生成します。
+            </summary>
+            <param name="cols">cols属性の値</param>
+            <param name="rows">rows属性の値</param>
+            <returns>作成されたオブジェクト</returns>
+        </member>
+        <member name="M:NestedHtmlWriter.NhInline.WriteAText(System.String,System.String)">
+            <summary>
+            href属性だけを持ち、内容がテキストである定型のA要素を出力します。
+            </summary>
+            <param name="href">href属性の値</param>
+            <param name="text">内容となるテキスト</param>
+        </member>
+        <member name="M:NestedHtmlWriter.NhInline.WriteImg(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            src, alt, width, height属性を持つimg要素を出力します。
+            </summary>
+            <param name="src">src属性の値</param>
+            <param name="alt">alt属性の値</param>
+            <param name="width">width属性の値</param>
+            <param name="height">height属性の値</param>
+        </member>
+        <member name="M:NestedHtmlWriter.NhInline.WriteImg(System.String,System.String)">
+            <summary>
+            src, alt属性を持つimg要素を出力します。
+            </summary>
+            <param name="src">src属性の値</param>
+            <param name="alt">alt属性の値</param>
+        </member>
+        <member name="M:NestedHtmlWriter.NhInline.WriteBr">
+            <summary>
+            属性を持たないbr要素を出力します。
+            </summary>
+        </member>
+        <member name="T:NestedHtmlWriter.NhImg">
+            <summary>
+            img要素を出力するクラスです。
+            </summary>
+        </member>
+        <member name="M:NestedHtmlWriter.NhImg.#ctor(System.IO.TextWriter,NestedHtmlWriter.NhBase)">
+            <summary>
+            NhImgクラスのコンストラクタです。
+            </summary>
+            <param name="writer">出力に使用するライター</param>
+            <param name="parent">親の要素クラス</param>
+        </member>
+        <member name="T:NestedHtmlWriter.NhBr">
+            <summary>
+            br要素を出力するクラスです。
+            </summary>
+        </member>
+        <member name="M:NestedHtmlWriter.NhBr.#ctor(System.IO.TextWriter,NestedHtmlWriter.NhBase)">
+            <summary>
+            NhBrクラスのコンストラクタです。
+            </summary>
+            <param name="writer">出力に使用するライター</param>
+            <param name="parent">親の要素クラス</param>
+        </member>
+        <member name="T:NestedHtmlWriter.NhSpan">
+            <summary>
+            span要素を出力するクラスです。
+            </summary>
+        </member>
+        <member name="M:NestedHtmlWriter.NhSpan.#ctor(System.IO.TextWriter,NestedHtmlWriter.NhBase)">
+            <summary>
+            NhSpanクラスのコンストラクタです。
+            </summary>
+            <param name="writer">出力に使用するライター</param>
+            <param name="parent">親の要素クラス</param>
+        </member>
+        <member name="T:NestedHtmlWriter.NhQ">
+            <summary>
+            q要素を出力するクラスです。
+            </summary>
+        </member>
+        <member name="M:NestedHtmlWriter.NhQ.#ctor(System.IO.TextWriter,NestedHtmlWriter.NhBase)">
+            <summary>
+            NhQクラスのコンストラクタです。
+            </summary>
+            <param name="writer">出力に使用するライター</param>
+            <param name="parent">親の要素クラス</param>
+        </member>
+        <member name="T:NestedHtmlWriter.NhStrong">
+            <summary>
+            strong要素を出力するクラスです。
+            </summary>
+        </member>
+        <member name="M:NestedHtmlWriter.NhStrong.#ctor(System.IO.TextWriter,NestedHtmlWriter.NhBase)">
+            <summary>
+            NhStrongクラスのコンストラクタです。
+            </summary>
+            <param name="writer">出力に使用するライター</param>
+            <param name="parent">親の要素クラス</param>
+        </member>
+        <member name="T:NestedHtmlWriter.NhEm">
+            <summary>
+            em要素を出力するクラスです。
+            </summary>
+        </member>
+        <member name="M:NestedHtmlWriter.NhEm.#ctor(System.IO.TextWriter,NestedHtmlWriter.NhBase)">
+            <summary>
+            NhEmクラスのコンストラクタです。
+            </summary>
+            <param name="writer">出力に使用するライター</param>
+            <param name="parent">親の要素クラス</param>
+        </member>
+        <member name="T:NestedHtmlWriter.NhA">
+            <summary>
+            a要素を出力するクラスです。
+            </summary>
+        </member>
+        <member name="M:NestedHtmlWriter.NhA.#ctor(System.IO.TextWriter,NestedHtmlWriter.NhBase)">
+            <summary>
+            NhAクラスのコンストラクタです。
+            </summary>
+            <param name="writer">出力に使用するライター</param>
+            <param name="parent">親の要素クラス</param>
+        </member>
+        <member name="T:NestedHtmlWriter.NhP">
+            <summary>
+            p要素を出力するクラスです。
+            </summary>
+        </member>
+        <member name="M:NestedHtmlWriter.NhP.#ctor(System.IO.TextWriter,NestedHtmlWriter.NhBase)">
+            <summary>
+            NhPクラスのコンストラクタです。
+            </summary>
+            <param name="writer">出力に使用するライター</param>
+            <param name="parent">親の要素クラス</param>
+        </member>
+        <member name="T:NestedHtmlWriter.NhCaption">
+            <summary>
+            caption要素を出力するクラスです。
+            </summary>
+        </member>
+        <member name="M:NestedHtmlWriter.NhCaption.#ctor(System.IO.TextWriter,NestedHtmlWriter.NhBase)">
+            <summary>
+            NhCaptionクラスのコンストラクタです。
+            </summary>
+            <param name="writer">出力に使用するライター</param>
+            <param name="parent">親の要素クラス</param>
+        </member>
+        <member name="T:NestedHtmlWriter.NhLi">
+            <summary>
+            内容がインラインとなるli要素を出力するクラスです。
+            </summary>
+        </member>
+        <member name="M:NestedHtmlWriter.NhLi.#ctor(System.IO.TextWriter,NestedHtmlWriter.NhBase)">
+            <summary>
+            NhLiクラスのコンストラクタです。
+            </summary>
+            <param name="writer">出力に使用するライター</param>
+            <param name="parent">親の要素クラス</param>
+        </member>
+        <member name="T:NestedHtmlWriter.NhLiInline">
+            <summary>
+            内容がインラインとなるli要素を出力するクラスです。
+            </summary>
+        </member>
+        <member name="M:NestedHtmlWriter.NhLiInline.#ctor(System.IO.TextWriter,NestedHtmlWriter.NhBase)">
+            <summary>
+            NhLiInlineクラスのコンストラクタです。
+            </summary>
+            <param name="writer">出力に使用するライター</param>
+            <param name="parent">親の要素クラス</param>
+        </member>
+        <member name="T:NestedHtmlWriter.NhLiBlock">
+            <summary>
+            内容がブロックとなるli要素を出力するクラスです。
+            </summary>
+        </member>
+        <member name="M:NestedHtmlWriter.NhLiBlock.#ctor(System.IO.TextWriter,NestedHtmlWriter.NhBase)">
+            <summary>
+            NhLiBlockクラスのコンストラクタです。
+            </summary>
+            <param name="writer">出力に使用するライター</param>
+            <param name="parent">親の要素クラス</param>
+        </member>
+        <member name="T:NestedHtmlWriter.NhTdInline">
+            <summary>
+            内容がインラインとなるtd要素を出力するクラスです。
+            </summary>
+        </member>
+        <member name="M:NestedHtmlWriter.NhTdInline.#ctor(System.IO.TextWriter,NestedHtmlWriter.NhBase)">
+            <summary>
+            NhTdInlineクラスのコンストラクタです。
+            </summary>
+            <param name="writer">出力に使用するライター</param>
+            <param name="parent">親の要素クラス</param>
+        </member>
+        <member name="T:NestedHtmlWriter.NhTdBlock">
+            <summary>
+            内容がブロックとなるtd要素を出力するクラスです。
+            </summary>
+        </member>
+        <member name="M:NestedHtmlWriter.NhTdBlock.#ctor(System.IO.TextWriter,NestedHtmlWriter.NhBase)">
+            <summary>
+            NhTdBlockクラスのコンストラクタです。
+            </summary>
+            <param name="writer">出力に使用するライター</param>
+            <param name="parent">親の要素クラス</param>
+        </member>
+        <member name="T:NestedHtmlWriter.NhThInline">
+            <summary>
+            内容がインラインとなるth要素を出力するクラスです。
+            </summary>
+        </member>
+        <member name="M:NestedHtmlWriter.NhThInline.#ctor(System.IO.TextWriter,NestedHtmlWriter.NhBase)">
+            <summary>
+            NhThInlineクラスのコンストラクタです。
+            </summary>
+            <param name="writer">出力に使用するライター</param>
+            <param name="parent">親の要素クラス</param>
+        </member>
+        <member name="T:NestedHtmlWriter.NhThBlock">
+            <summary>
+            内容がブロックとなるth要素を出力するクラスです。
+            </summary>
+        </member>
+        <member name="M:NestedHtmlWriter.NhThBlock.#ctor(System.IO.TextWriter,NestedHtmlWriter.NhBase)">
+            <summary>
+            NhThBlockクラスのコンストラクタです。
+            </summary>
+            <param name="writer">出力に使用するライター</param>
+            <param name="parent">親の要素クラス</param>
+        </member>
+        <member name="T:NestedHtmlWriter.NhTr">
+            <summary>
+            tr要素を出力するクラスです。
+            </summary>
+        </member>
+        <member name="M:NestedHtmlWriter.NhTr.#ctor(System.IO.TextWriter,NestedHtmlWriter.NhBase)">
+            <summary>
+            NhTrクラスのコンストラクタです。
+            </summary>
+            <param name="writer">出力に使用するライター</param>
+            <param name="parent">親の要素クラス</param>
+        </member>
+        <member name="M:NestedHtmlWriter.NhTr.CreateTdInline">
+            <summary>
+            内容がインラインとなるtd要素に対応するオブジェクトを生成します。
+            </summary>
+            <returns>作成されたオブジェクト</returns>
+        </member>
+        <member name="M:NestedHtmlWriter.NhTr.CreateTdBlock">
+            <summary>
+            内容がブロックとなるtd要素に対応するオブジェクトを生成します。
+            </summary>
+            <returns>作成されたオブジェクト</returns>
+        </member>
+        <member name="M:NestedHtmlWriter.NhTr.CreateThInline">
+            <summary>
+            内容がインラインとなるth要素に対応するオブジェクトを生成します。
+            </summary>
+            <returns>作成されたオブジェクト</returns>
+        </member>
+        <member name="M:NestedHtmlWriter.NhTr.CreateThBlock">
+            <summary>
+            内容がブロックとなるth要素に対応するオブジェクトを生成します。
+            </summary>
+            <returns>作成されたオブジェクト</returns>
+        </member>
+        <member name="T:NestedHtmlWriter.NhUl">
+            <summary>
+            ul要素を出力するクラスです。
+            </summary>
+        </member>
+        <member name="M:NestedHtmlWriter.NhUl.#ctor(System.IO.TextWriter,NestedHtmlWriter.NhBase)">
+            <summary>
+            NhUlクラスのコンストラクタです。
+            </summary>
+            <param name="writer">出力に使用するライター</param>
+            <param name="parent">親の要素クラス</param>
+        </member>
+        <member name="M:NestedHtmlWriter.NhUl.CreateLi">
+            <summary>
+            li要素に対応するオブジェクトを生成します。
+            </summary>
+            <returns>作成されたオブジェクト</returns>
+        </member>
+        <member name="M:NestedHtmlWriter.NhUl.CreateLiInline">
+            <summary>
+            内容がインラインとなるli要素に対応するオブジェクトを生成します。
+            </summary>
+            <returns>作成されたオブジェクト</returns>
+        </member>
+        <member name="M:NestedHtmlWriter.NhUl.CreateLiBlock">
+            <summary>
+            内容がブロックとなるli要素に対応するオブジェクトを生成します。
+            </summary>
+            <returns>作成されたオブジェクト</returns>
+        </member>
+        <member name="M:NestedHtmlWriter.NhUl.WriteLiText(System.String)">
+            <summary>
+            属性を持たず、内容にテキストを持つli要素を出力します。
+            </summary>
+            <param name="text">内容となるテキスト</param>
+        </member>
+        <member name="T:NestedHtmlWriter.NhOl">
+            <summary>
+            ol要素を出力するクラスです。
+            </summary>
+        </member>
+        <member name="M:NestedHtmlWriter.NhOl.#ctor(System.IO.TextWriter,NestedHtmlWriter.NhBase)">
+            <summary>
+            NhOlクラスのコンストラクタです。
+            </summary>
+            <param name="writer">出力に使用するライター</param>
+            <param name="parent">親の要素クラス</param>
+        </member>
+        <member name="M:NestedHtmlWriter.NhOl.CreateLi">
+            <summary>
+            内容がインラインとなるli要素に対応するオブジェクトを生成します。
+            </summary>
+            <returns>作成されたオブジェクト</returns>
+        </member>
+        <member name="M:NestedHtmlWriter.NhOl.CreateLiInline">
+            <summary>
+            内容がインラインとなるli要素に対応するオブジェクトを生成します。
+            </summary>
+            <returns>作成されたオブジェクト</returns>
+        </member>
+        <member name="M:NestedHtmlWriter.NhOl.CreateLiBlock">
+            <summary>
+            内容がブロックとなるli要素に対応するオブジェクトを生成します。
+            </summary>
+            <returns>作成されたオブジェクト</returns>
+        </member>
+        <member name="M:NestedHtmlWriter.NhOl.WriteLiText(System.String)">
+            <summary>
+            属性を持たず、内容にテキストを持つli要素を出力します。
+            </summary>
+            <param name="text">内容となるテキスト</param>
+        </member>
+        <member name="T:NestedHtmlWriter.NhTable">
+            <summary>
+            table要素を出力するクラスです。
+            </summary>
+        </member>
+        <member name="M:NestedHtmlWriter.NhTable.#ctor(System.IO.TextWriter,NestedHtmlWriter.NhBase)">
+            <summary>
+            NhTableクラスのコンストラクタです。
+            </summary>
+            <param name="writer">出力に使用するライター</param>
+            <param name="parent">親の要素クラス</param>
+        </member>
+        <member name="M:NestedHtmlWriter.NhTable.CreateTr">
+            <summary>
+            tr要素に対応するオブジェクトを生成します。
+            </summary>
+            <returns>作成されたオブジェクト</returns>
+        </member>
+        <member name="M:NestedHtmlWriter.NhTable.CreateCaption">
+            <summary>
+            caption要素に対応するオブジェクトを生成します。
+            </summary>
+            <returns>作成されたオブジェクト</returns>
+        </member>
+        <member name="T:NestedHtmlWriter.NhDiv">
+            <summary>
+            div要素を出力するクラスです。
+            </summary>
+        </member>
+        <member name="M:NestedHtmlWriter.NhDiv.#ctor(System.IO.TextWriter,NestedHtmlWriter.NhBase)">
+            <summary>
+            NhDivクラスのコンストラクタです。
+            </summary>
+            <param name="writer">出力に使用するライター</param>
+            <param name="parent">親の要素クラス</param>
+        </member>
+        <member name="T:NestedHtmlWriter.NhBlockQuote">
+            <summary>
+            blockquote要素を出力するクラスです。
+            </summary>
+        </member>
+        <member name="M:NestedHtmlWriter.NhBlockQuote.#ctor(System.IO.TextWriter,NestedHtmlWriter.NhBase)">
+            <summary>
+            NhBlockQuoteクラスのコンストラクタです。
+            </summary>
+            <param name="writer">出力に使用するライター</param>
+            <param name="parent">親の要素クラス</param>
+        </member>
+        <member name="T:NestedHtmlWriter.NhHx">
+            <summary>
+            h1～h6要素を出力するクラスです。
+            </summary>
+        </member>
+        <member name="M:NestedHtmlWriter.NhHx.#ctor(System.Int32,System.IO.TextWriter,NestedHtmlWriter.NhBase)">
+            <summary>
+            NhHxクラスのコンストラクタです。
+            </summary>
+            <param name="level">タグ名2文字目となる1～6の整数値</param>
+            <param name="writer">出力に使用するライター</param>
+            <param name="parent">親の要素クラス</param>
+        </member>
+        <member name="T:NestedHtmlWriter.NhForm">
+            <summary>
+            div要素を出力するクラスです。
+            </summary>
+        </member>
+        <member name="M:NestedHtmlWriter.NhForm.#ctor(System.IO.TextWriter,NestedHtmlWriter.NhBase,System.String)">
+            <summary>
+            NhFormクラスのコンストラクタです。
+            </summary>
+            <param name="writer">出力に使用するライター</param>
+            <param name="parent">親の要素クラス</param>
+            <param name="action">action属性の値</param>
+        </member>
+        <member name="M:NestedHtmlWriter.NhForm.WritePostMethod">
+            <summary>
+            値がpostであるmethod属性を出力します。
+            </summary>
+        </member>
+        <member name="M:NestedHtmlWriter.NhForm.WriteGetMethod">
+            <summary>
+            値がgetであるmethod属性を出力します。
+            </summary>
+        </member>
+        <member name="T:NestedHtmlWriter.NhInput">
+            <summary>
+            input要素を出力するクラスです。
+            </summary>
+        </member>
+        <member name="M:NestedHtmlWriter.NhInput.#ctor(System.IO.TextWriter,NestedHtmlWriter.NhBase)">
+            <summary>
+            NhInputクラスのコンストラクタです。
+            </summary>
+            <param name="writer">出力に使用するライター</param>
+            <param name="parent">親の要素クラス</param>
+        </member>
+        <member name="T:NestedHtmlWriter.NhLabel">
+            <summary>
+            label要素を出力するクラスです。
+            </summary>
+        </member>
+        <member name="M:NestedHtmlWriter.NhLabel.#ctor(System.IO.TextWriter,NestedHtmlWriter.NhBase)">
+            <summary>
+            NhLabelクラスのコンストラクタです。
+            </summary>
+            <param name="writer">出力に使用するライター</param>
+            <param name="parent">親の要素クラス</param>
+        </member>
+        <member name="T:NestedHtmlWriter.NhSelect">
+            <summary>
+            select要素を出力するクラスです。
+            </summary>
+        </member>
+        <member name="M:NestedHtmlWriter.NhSelect.CreateOption">
+            <summary>
+            option要素に対応するオブジェクトを生成します。
+            </summary>
+            <returns>作成されたオブジェクト</returns>
+        </member>
+        <member name="M:NestedHtmlWriter.NhSelect.#ctor(System.IO.TextWriter,NestedHtmlWriter.NhBase)">
+            <summary>
+            NhSelectクラスのコンストラクタです。
+            </summary>
+            <param name="writer">出力に使用するライター</param>
+            <param name="parent">親の要素クラス</param>
+        </member>
+        <member name="T:NestedHtmlWriter.NhOption">
+            <summary>
+            option要素を出力するクラスです。
+            </summary>
+        </member>
+        <member name="M:NestedHtmlWriter.NhOption.#ctor(System.IO.TextWriter,NestedHtmlWriter.NhBase)">
+            <summary>
+            NhSelectクラスのコンストラクタです。
+            </summary>
+            <param name="writer">出力に使用するライター</param>
+            <param name="parent">親の要素クラス</param>
+        </member>
+        <member name="T:NestedHtmlWriter.NhTextArea">
+            <summary>
+            textarea要素を出力するクラスです。
+            </summary>
+        </member>
+        <member name="M:NestedHtmlWriter.NhTextArea.#ctor(System.IO.TextWriter,NestedHtmlWriter.NhBase,System.Int32,System.Int32)">
+            <summary>
+            NhTextAreaクラスのコンストラクタです。
+            </summary>
+            <param name="writer">出力に使用するライター</param>
+            <param name="parent">親の要素クラス</param>
+            <param name="cols">cols属性の値</param>
+            <param name="rows">rows属性の値</param>
+        </member>
+        <member name="T:NestedHtmlWriter.NhBlock">
+            <summary>
+            内容がブロックとなる要素を表現する汎用クラスです。継承して使います。
+            </summary>
+        </member>
+        <member name="M:NestedHtmlWriter.NhBlock.#ctor(System.IO.TextWriter,System.String,NestedHtmlWriter.NhBase)">
+            <summary>
+            NhBlockクラスのコンストラクタです。
+            </summary>
+            <param name="writer">出力に使用するライター</param>
+            <param name="tagName">タグ名。名前空間使用時には、接頭辞:ローカル名の形式</param>
+            <param name="parent">親の要素クラス</param>
+        </member>
+        <member name="M:NestedHtmlWriter.NhBlock.CreateP">
+            <summary>
+            p要素に対応するオブジェクトを生成します。
+            </summary>
+            <returns>作成されたオブジェクト</returns>
+        </member>
+        <member name="M:NestedHtmlWriter.NhBlock.CreateUl">
+            <summary>
+            ul要素に対応するオブジェクトを生成します。
+            </summary>
+            <returns>作成されたオブジェクト</returns>
+        </member>
+        <member name="M:NestedHtmlWriter.NhBlock.CreateOl">
+            <summary>
+            ol要素に対応するオブジェクトを生成します。
+            </summary>
+            <returns>作成されたオブジェクト</returns>
+        </member>
+        <member name="M:NestedHtmlWriter.NhBlock.CreateTable">
+            <summary>
+            table要素に対応するオブジェクトを生成します。
+            </summary>
+            <returns>作成されたオブジェクト</returns>
+        </member>
+        <member name="M:NestedHtmlWriter.NhBlock.CreateDiv">
+            <summary>
+            div要素に対応するオブジェクトを生成します。
+            </summary>
+            <returns>作成されたオブジェクト</returns>
+        </member>
+        <member name="M:NestedHtmlWriter.NhBlock.CreateBlockQuote">
+            <summary>
+            blockquote要素に対応するオブジェクトを生成します。
+            </summary>
+            <returns>作成されたオブジェクト</returns>
+        </member>
+        <member name="M:NestedHtmlWriter.NhBlock.CreateHx(System.Int32)">
+            <summary>
+            h1～h6要素に対応するオブジェクトを生成します。
+            </summary>
+            <param name="level">タグ名2文字目となる1～6の整数値</param>
+            <returns>作成されたオブジェクト</returns>
+        </member>
+        <member name="M:NestedHtmlWriter.NhBlock.CreateForm(System.String)">
+            <summary>
+            Form要素に対応するオブジェクトを生成します。
+            </summary>
+            <param name="action">action属性の値</param>
+            <returns>作成されたオブジェクト</returns>
+        </member>
+        <member name="M:NestedHtmlWriter.NhBlock.WritePText(System.String)">
+            <summary>
+            属性を持たず、内容にテキストを持つp要素を出力します。
+            </summary>
+            <param name="text">内容となるテキスト</param>
+        </member>
+        <member name="M:NestedHtmlWriter.NhBlock.WriteHxText(System.Int32,System.String)">
+            <summary>
+            属性を持たず、内容にテキストを持つh1～h6要素を出力します。
+            </summary>
+            <param name="level">タグ名2文字目となる1～6の整数値</param>
+            <param name="text">内容となるテキスト</param>
+        </member>
+        <member name="T:NestedHtmlWriter.NhBody">
+            <summary>
+            body要素を出力するクラスです。
+            </summary>
+        </member>
+        <member name="M:NestedHtmlWriter.NhBody.#ctor(System.IO.TextWriter,NestedHtmlWriter.NhBase)">
+            <summary>
+            NhBodyクラスのコンストラクタです。
+            </summary>
+            <param name="writer">出力に使用するライター</param>
+            <param name="parent">親の要素クラス</param>
+        </member>
+        <member name="T:NestedHtmlWriter.NhHead">
+            <summary>
+            head要素を出力するクラスです。
+            </summary>
+        </member>
+        <member name="M:NestedHtmlWriter.NhHead.#ctor(System.IO.TextWriter,NestedHtmlWriter.NhBase)">
+            <summary>
+            NhHeadクラスのコンストラクタです。
+            </summary>
+            <param name="writer">出力に使用するライター</param>
+            <param name="parent">親の要素クラス</param>
+        </member>
+        <member name="M:NestedHtmlWriter.NhHead.WriteTitle(System.String)">
+            <summary>
+            属性を持たず、内容にテキストを持つtitle要素を出力します。
+            </summary>
+            <param name="title">内容となるテキスト</param>
+        </member>
+        <member name="M:NestedHtmlWriter.NhHead.WriteEncodingName(System.String)">
+            <summary>
+            Content-Type情報を持つmeta要素を出力します。
+            </summary>
+            <remarks>次のような書式が出力されます。
+            &lt;meta http-equiv="Content-Type" content="text/html;charset="指定値" />
+            </remarks>
+            <param name="encodingName">charset名</param>
+        </member>
+        <member name="M:NestedHtmlWriter.NhHead.WriteStyleSheetRefer(System.String,System.String)">
+            <summary>
+            スタイルシート情報への参照を出力します。
+            </summary>
+            <remarks>次のような文字列が出力されます。
+            &lt;link href="href値" type="type値" rel="stylesheet" />
+            </remarks>
+            <param name="href">使用するスタイルシートのURI。nullの場合、スタイルシート指定は埋め込まれません。</param>
+            <param name="type">使用するスタイルシートのメディアタイプ (例:text/css)</param>
+        </member>
+        <member name="T:NestedHtmlWriter.NhHtml">
+            <summary>
+            html要素を出力するクラスです。
+            </summary>
+        </member>
+        <member name="M:NestedHtmlWriter.NhHtml.#ctor(System.IO.TextWriter,NestedHtmlWriter.NhBase)">
+            <summary>
+            NhHtmlクラスのコンストラクタです。
+            </summary>
+            <remarks>html要素には、http://www.w3.org/1999/xhtml という値を持つxmlns属性が必ず付加されます。</remarks>
+            <param name="writer">出力に使用するライター</param>
+            <param name="parent">親の要素クラス</param>
+        </member>
+        <member name="M:NestedHtmlWriter.NhHtml.CreateHead">
+            <summary>
+            head要素に対応するオブジェクトを生成します。
+            </summary>
+            <returns>作成されたオブジェクト</returns>
+        </member>
+        <member name="M:NestedHtmlWriter.NhHtml.CreateBody">
+            <summary>
+            body要素に対応するオブジェクトを生成します。
+            </summary>
+            <returns>作成されたオブジェクト</returns>
+        </member>
+        <member name="T:NestedHtmlWriter.NhDocument">
+            <summary>
+            文書全体を表現し、文書の先頭部分を出力するクラスです。
+            </summary>
+        </member>
+        <member name="M:NestedHtmlWriter.NhDocument.#ctor(System.IO.TextWriter,NestedHtmlWriter.NhDocumentType)">
+            <summary>
+            NhDocumentクラスのコンストラクタです。XML宣言とDOCTYPE宣言が自動的に出力されます。
+            </summary>
+            <remarks>指定されたドキュメントの種類に従って、以下のような内容が出力されます。
+            NhDocumentType.Xhtml11の場合、次の内容が3行に渡って出力されます。
+            &lt;?xml version=\"1.0\"?>
+            &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+            "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+            
+            NhDocumentType.Xhtml10Strictの場合、次の内容が3行に渡って出力されます。
+            &lt;?xml version=\"1.0\"?>
+            &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+            "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+            
+            NhDocumentType.Xhtml10Transitionalの場合、次の内容が3行に渡って出力されます。
+            &lt;?xml version=\"1.0\"?>
+            &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+            "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+            </remarks>
+            <param name="writer">出力に使用するライター</param>
+            <param name="documentType">ドキュメントの種類</param>
+        </member>
+        <member name="M:NestedHtmlWriter.NhDocument.#ctor(System.IO.TextWriter)">
+            <summary>
+            NhDocumentクラスのコンストラクタです。XML宣言とXHTML 1.1のDOCTYPE宣言が自動的に出力されます。
+            </summary>
+            <remarks>次の内容が3行に渡って出力されます。
+            &lt;?xml version=\"1.0\"?>
+            &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+            "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+            </remarks>
+            <param name="writer">出力に使用するライター</param>
+        </member>
+        <member name="M:NestedHtmlWriter.NhDocument.CreateHtml">
+            <summary>
+            html要素に対応するオブジェクトを生成します。
+            </summary>
+            <returns>作成されたオブジェクト</returns>
+        </member>
+        <member name="T:NestedHtmlWriter.NhQuickDocument">
+            <summary>
+            文書全体を表現し、定型化されたヘッダーを出力するクラスです。
+            少ない手間で定型文書を出力する場合に使用します。
+            </summary>
+        </member>
+        <member name="M:NestedHtmlWriter.NhQuickDocument.#ctor(System.IO.TextWriter,System.String,System.String,System.String)">
+            <summary>
+            NhQuickDocumentクラスのコンストラクタです。文書のヘッダーに含まれる情報を引数に指定します。
+            </summary>
+            <param name="writer">出力に使用するライター</param>
+            <param name="title">文書のタイトル(title要素)</param>
+            <param name="styleSheetHref">使用するスタイルシートのURI。nullの場合、スタイルシート指定は埋め込まれません。</param>
+            <param name="styleSheetType">使用するスタイルシートのメディアタイプ (例:text/css)</param>
+        </member>
+        <member name="M:NestedHtmlWriter.NhQuickDocument.#ctor(System.IO.TextWriter,System.String,System.String,System.String,System.String,NestedHtmlWriter.NhDocumentType)">
+            <summary>
+            NhQuickDocumentクラスのコンストラクタです。文書のヘッダーに含まれる情報を引数に指定します。
+            </summary>
+            <param name="writer">出力に使用するライター</param>
+            <param name="title">文書のタイトル(title要素)</param>
+            <param name="styleSheetHref">使用するスタイルシートのURI。nullの場合、スタイルシート指定は埋め込まれません。</param>
+            <param name="styleSheetType">使用するスタイルシートのメディアタイプ (例:text/css)</param>
+            <param name="languageCode">文書のデフォルトの言語コード (例:ja-JP)</param>
+            <param name="documentType">ドキュメントの種類</param>
+            <remarks>ドキュメントの種類がNhDocumentType.Xhtml10Strictまたは、NhDocumentType.Xhtml10Transitionalの場合、
+            言語コードは、xml:lang属性の他にlang属性としても出力されます。
+            </remarks>
+        </member>
+        <member name="M:NestedHtmlWriter.NhQuickDocument.#ctor(System.IO.TextWriter,System.String,System.String,System.String,System.String,NestedHtmlWriter.NhDocumentType,System.String)">
+            <summary>
+            NhQuickDocumentクラスのコンストラクタです。文書のヘッダーに含まれる情報を引数に指定します。
+            </summary>
+            <param name="writer">出力に使用するライター</param>
+            <param name="title">文書のタイトル(title要素)</param>
+            <param name="styleSheetHref">使用するスタイルシートのURI。nullの場合、スタイルシート指定は埋め込まれません。</param>
+            <param name="styleSheetType">使用するスタイルシートのメディアタイプ (例:text/css)</param>
+            <param name="languageCode">文書のデフォルトの言語コード (例:ja-JP)</param>
+            <param name="documentType">ドキュメントの種類</param>
+            <param name="encodingName">ヘッダーに埋め込むIANA charset名</param>
+            <remarks>ドキュメントの種類がNhDocumentType.Xhtml10Strictまたは、NhDocumentType.Xhtml10Transitionalの場合、
+            言語コードは、xml:lang属性の他にlang属性としても出力されます。
+            </remarks>
+        </member>
+        <member name="P:NestedHtmlWriter.NhQuickDocument.B">
+            <summary>
+            この文書のNhBodyクラスのインスタンスを参照します。通常、このプロパティを通して文書の内容を出力します。
+            </summary>
+        </member>
+        <member name="M:NestedHtmlWriter.NhQuickDocument.Dispose">
+            <summary>
+            確保した資源を解放します。
+            </summary>
+        </member>
+        <member name="T:NestedHtmlWriter.NhUtil">
+            <summary>
+            NestedHtmlWriterが作業用に使う機能を含むクラスです。
+            </summary>
+        </member>
+        <member name="M:NestedHtmlWriter.NhUtil.QuoteText(System.String)">
+            <summary>
+            文字列を調べ、XMLで特別な意味を持つ文字を、定義済み実体参照に置き換えます。
+            </summary>
+            <param name="s">通常の文字列</param>
+            <returns>置き換えられた文字列</returns>
+        </member>
+    </members>
+</doc>
