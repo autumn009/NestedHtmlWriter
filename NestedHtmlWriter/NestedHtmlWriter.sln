@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		nhw001.txt = nhw001.txt
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NestedHtmlWriterPortable", "NestedHtmlWriterPortable\NestedHtmlWriterPortable.csproj", "{396659F7-D728-49CD-B0F5-0AFB2F3051F8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,12 @@ Global
 		{DD0C4EF3-C856-445C-8CCF-B016BCEB5C13}.KinoLaboRelease|Any CPU.Build.0 = KinoLaboRelease|Any CPU
 		{DD0C4EF3-C856-445C-8CCF-B016BCEB5C13}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD0C4EF3-C856-445C-8CCF-B016BCEB5C13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{396659F7-D728-49CD-B0F5-0AFB2F3051F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{396659F7-D728-49CD-B0F5-0AFB2F3051F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{396659F7-D728-49CD-B0F5-0AFB2F3051F8}.KinoLaboRelease|Any CPU.ActiveCfg = Release|Any CPU
+		{396659F7-D728-49CD-B0F5-0AFB2F3051F8}.KinoLaboRelease|Any CPU.Build.0 = Release|Any CPU
+		{396659F7-D728-49CD-B0F5-0AFB2F3051F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{396659F7-D728-49CD-B0F5-0AFB2F3051F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
