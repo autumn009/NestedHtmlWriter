@@ -7,6 +7,14 @@ using System.IO;
 namespace NestedHtmlWriter
 {
     /// <summary>
+    /// Main name space of NestedHtmlWriter
+    /// </summary>
+    /// <remarks>This is a namespace for NestedHtmlWriter</remarks>
+    [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    class NamespaceDoc
+    {
+    }
+    /// <summary>
     /// Type of document types
     /// </summary>
     public enum NhDocumentType
