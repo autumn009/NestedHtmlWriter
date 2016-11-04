@@ -3,15 +3,15 @@
 namespace NestedHtmlWriter
 {
     /// <summary>
-    /// NestedHtmlWriterが作業用に使う機能を含むクラスです。
+    /// Utility functions for NestedHtmlWriter
     /// </summary>
     public class NhUtil
     {
         /// <summary>
-        /// 文字列を調べ、XMLで特別な意味を持つ文字を、定義済み実体参照に置き換えます。
+        /// encode string to defeind reference charaters
         /// </summary>
-        /// <param name="s">通常の文字列</param>
-        /// <returns>置き換えられた文字列</returns>
+        /// <param name="s">normal string</param>
+        /// <returns>encoded string</returns>
         public static string QuoteText(string s)
         {
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
@@ -31,10 +31,6 @@ namespace NestedHtmlWriter
                     case '"':
                         sb.Append("&quot;");
                         break;
-                    // IEに&apos;が通じなかったのでコメントアウト
-                    //case '\'':
-                    //	sb.Append("&apos;");
-                    //	break;
                     default:
                         sb.Append(c);
                         break;

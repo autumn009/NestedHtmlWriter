@@ -3,7 +3,7 @@ using System.IO;
 using NestedHtmlWriter;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TestNestedHtmlWriterPortable
+namespace TestNestedHtmlWriter
 {
     [TestClass]
     public class TestNestedHtmlWriter
@@ -51,9 +51,11 @@ namespace TestNestedHtmlWriterPortable
             }
         }
 
+        // purpose of this test is getting invalid result without exception.
         [TestMethod]
         public void TestBodyAndP3()
         {
+            const string invalidResult = "<body>\r\n<p<p></p>\r\n></p>\r\n</body>\r\n";
             NhSetting.StrictNestChecking = false;
             StringWriter writer = new StringWriter();
             using (NhBody body = new NhBody(writer, null))
@@ -65,8 +67,7 @@ namespace TestNestedHtmlWriterPortable
                     }
                 }
             }
-            // 注意: この場合の結果は不定であり、落ちないでここまで来れば合格
-            Assert.AreEqual(true, true);
+            Assert.AreEqual(writer.ToString(), invalidResult);
         }
 
         [TestMethod]
@@ -86,7 +87,7 @@ namespace TestNestedHtmlWriterPortable
 
             StringWriter writer = new StringWriter();
             NhDocument doc = new NhDocument(writer);
-            using (NhHtml html = doc.CreateHtml())
+            using (NhHtml html = doc.CreateHtml(true))
             {
                 using (NhHead head = html.CreateHead())
                 {
@@ -204,6 +205,32 @@ namespace TestNestedHtmlWriterPortable
             StringWriter writer = new StringWriter();
             using (NhQuickDocument doc = new NhQuickDocument(writer,
                        "test title", "default.css", "text/css", "ja-JP", NhDocumentType.Xhtml10Transitional, "utf-8"))
+            {
+                doc.B.WritePText("test para");
+            }
+            string s1 = writer.ToString();
+            Assert.AreEqual(r1, s1);
+        }
+
+        [TestMethod]
+        public void TestQuickNestedDocument5()
+        {
+            const string r1 = ""
+                      + "<!DOCTYPE html>\r\n"
+                      + "<html lang=\"us-en\">\r\n"
+                      + "<head>\r\n"
+                      + "<meta http-equiv=\"Content-Type\" content=\"text/html;charset=utf-8\">\r\n"
+                      + "<title>test title</title>\r\n"
+                      + "<link href=\"default.css\" type=\"text/css\" rel=\"stylesheet\">\r\n"
+                      + "</head>\r\n"
+                      + "<body>\r\n"
+                      + "<p>test para</p>\r\n"
+                      + "</body>\r\n"
+                      + "</html>\r\n";
+
+            StringWriter writer = new StringWriter();
+            using (NhQuickDocument doc = new NhQuickDocument(writer,
+                       "test title", "default.css", "text/css", "us-en", NhDocumentType.Html5, "utf-8"))
             {
                 doc.B.WritePText("test para");
             }
@@ -367,25 +394,25 @@ namespace TestNestedHtmlWriterPortable
         }
 
 #if false
-		[TestMethod]
-		public void TestOldLi()
-		{
-			const string r1 = "<ul>\r\n<li><strong>test</strong></li>\r\n</ul>\r\n";
+        [TestMethod]
+        public void TestOldLi()
+        {
+            const string r1 = "<ul>\r\n<li><strong>test</strong></li>\r\n</ul>\r\n";
 
-			StringWriter writer = new StringWriter();
-			using( NhUl ul = new NhUl( writer, null ) )
-			{
-				using( NhLi li = ul.CreateLi() )
-				{
-					using( NhStrong strong = li.CreateStrong() )
-					{
-						strong.WriteText("test");
-					}
-				}
-			}
-			string s1 = writer.ToString();
-			Assert.AreEqual( r1, s1 );
-		}
+            StringWriter writer = new StringWriter();
+            using( NhUl ul = new NhUl( writer, null ) )
+            {
+                using( NhLi li = ul.CreateLi() )
+                {
+                    using( NhStrong strong = li.CreateStrong() )
+                    {
+                        strong.WriteText("test");
+                    }
+                }
+            }
+            string s1 = writer.ToString();
+            Assert.AreEqual( r1, s1 );
+        }
 #endif
 
         [TestMethod]
@@ -755,4 +782,3 @@ namespace TestNestedHtmlWriterPortable
         }
     }
 }
-
