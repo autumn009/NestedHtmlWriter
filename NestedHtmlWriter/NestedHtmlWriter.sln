@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NestedHtmlWriterPortable", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestNestedHtmlWriterPortable", "TestNestedHtmlWriterPortable\TestNestedHtmlWriterPortable.csproj", "{40BABF5D-FEE5-40B5-94C7-3F9D24E0BC89}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleSample001", "SimpleSample001\SimpleSample001.csproj", "{C2AC10EC-E077-4AF9-B68B-016B8B286100}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,12 @@ Global
 		{40BABF5D-FEE5-40B5-94C7-3F9D24E0BC89}.KinoLaboRelease|Any CPU.Build.0 = Release|Any CPU
 		{40BABF5D-FEE5-40B5-94C7-3F9D24E0BC89}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40BABF5D-FEE5-40B5-94C7-3F9D24E0BC89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2AC10EC-E077-4AF9-B68B-016B8B286100}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2AC10EC-E077-4AF9-B68B-016B8B286100}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2AC10EC-E077-4AF9-B68B-016B8B286100}.KinoLaboRelease|Any CPU.ActiveCfg = Release|Any CPU
+		{C2AC10EC-E077-4AF9-B68B-016B8B286100}.KinoLaboRelease|Any CPU.Build.0 = Release|Any CPU
+		{C2AC10EC-E077-4AF9-B68B-016B8B286100}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2AC10EC-E077-4AF9-B68B-016B8B286100}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
