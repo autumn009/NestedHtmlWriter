@@ -14,31 +14,28 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestNestedHtmlWriterPortabl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleSample001", "SimpleSample001\SimpleSample001.csproj", "{C2AC10EC-E077-4AF9-B68B-016B8B286100}"
 EndProject
+Project("{7CF6DF6D-3B04-46F8-A40B-537D21BCA0B4}") = "NestedHtmlWriterDocs", "NestedHtmlWriterDocs\NestedHtmlWriterDocs.shfbproj", "{0FE8E7A7-EC9D-4C6F-904E-A83EBC6317BC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
-		KinoLaboRelease|Any CPU = KinoLaboRelease|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{396659F7-D728-49CD-B0F5-0AFB2F3051F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{396659F7-D728-49CD-B0F5-0AFB2F3051F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{396659F7-D728-49CD-B0F5-0AFB2F3051F8}.KinoLaboRelease|Any CPU.ActiveCfg = Release|Any CPU
-		{396659F7-D728-49CD-B0F5-0AFB2F3051F8}.KinoLaboRelease|Any CPU.Build.0 = Release|Any CPU
 		{396659F7-D728-49CD-B0F5-0AFB2F3051F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{396659F7-D728-49CD-B0F5-0AFB2F3051F8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{40BABF5D-FEE5-40B5-94C7-3F9D24E0BC89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{40BABF5D-FEE5-40B5-94C7-3F9D24E0BC89}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{40BABF5D-FEE5-40B5-94C7-3F9D24E0BC89}.KinoLaboRelease|Any CPU.ActiveCfg = Release|Any CPU
-		{40BABF5D-FEE5-40B5-94C7-3F9D24E0BC89}.KinoLaboRelease|Any CPU.Build.0 = Release|Any CPU
 		{40BABF5D-FEE5-40B5-94C7-3F9D24E0BC89}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40BABF5D-FEE5-40B5-94C7-3F9D24E0BC89}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C2AC10EC-E077-4AF9-B68B-016B8B286100}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C2AC10EC-E077-4AF9-B68B-016B8B286100}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C2AC10EC-E077-4AF9-B68B-016B8B286100}.KinoLaboRelease|Any CPU.ActiveCfg = Release|Any CPU
-		{C2AC10EC-E077-4AF9-B68B-016B8B286100}.KinoLaboRelease|Any CPU.Build.0 = Release|Any CPU
 		{C2AC10EC-E077-4AF9-B68B-016B8B286100}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C2AC10EC-E077-4AF9-B68B-016B8B286100}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FE8E7A7-EC9D-4C6F-904E-A83EBC6317BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FE8E7A7-EC9D-4C6F-904E-A83EBC6317BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
