@@ -65,6 +65,7 @@ namespace NestedHtmlWriter
         /// <summary>
         /// Constructor
         /// </summary>
+        /// <param name="msg">Exception message</param>
         public NhException(string msg)
             : base(msg)
         {
@@ -72,6 +73,8 @@ namespace NestedHtmlWriter
         /// <summary>
         /// Constructor
         /// </summary>
+        /// <param name="msg">Exception message</param>
+        /// <param name="ex">excetion object</param>
         public NhException(string msg, Exception ex)
             : base(msg, ex)
         {
