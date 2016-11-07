@@ -10,6 +10,7 @@
 			<content>
         <para>NestedHtmlWriter is a class library for generate html files by
         nested using statement of C#.</para>
+        <para>Supported Environments are .NET Farmework 4.5, ASP.NET Core 1.0, Windows 8, Xamarin.Android, Xamarin.iOS, Xamarin.iOS(Classic) or above.</para>
         <para>To get started, see SimpleSample001 project.</para>
         <code language="cs">
 <![CDATA[
