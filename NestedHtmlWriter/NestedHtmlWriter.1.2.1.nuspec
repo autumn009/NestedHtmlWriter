@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>NestedHtmlWriter</id>
+        <version>1.2.1</version>
+        <title>NestedHtmlWriter</title>
+        <authors>Akira Kawamata</authors>
+        <owners>Pie Dey Co.,Ltd.</owners>
+        <licenseUrl>https://github.com/autumn009/NestedHtmlWriter/blob/master/LICENSE</licenseUrl>
+        <projectUrl>https://github.com/autumn009/NestedHtmlWriter</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>NestedHtmlWriter is a class library for generate html files by nested using statement of C#.</description>
+        <summary>Writer for HTML by nesting style</summary>
+        <language>es-US</language>
+        <serviceable>true</serviceable>
+        <frameworkAssemblies>
+            <frameworkAssembly assemblyName="System" targetFramework="" />
+        </frameworkAssemblies>
+    </metadata>
+    <files>
+        <file src="NestedHtmlWriterPortable.dll" target="NestedHtmlWriterPortable.dll" />
+    </files>
+</package>
