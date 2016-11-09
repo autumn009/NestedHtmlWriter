@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>NestedHtmlWriter</id>
         <version>1.2.1</version>
@@ -13,11 +13,11 @@
         <summary>Writer for HTML by nesting style</summary>
         <language>es-US</language>
         <serviceable>true</serviceable>
-        <frameworkAssemblies>
-            <frameworkAssembly assemblyName="System" targetFramework="" />
-        </frameworkAssemblies>
+        <references>
+            <reference file="NestedHtmlWriterPortable.dll" />
+        </references>
     </metadata>
     <files>
-        <file src="NestedHtmlWriterPortable.dll" target="NestedHtmlWriterPortable.dll" />
+        <file src="lib\NestedHtmlWriterPortable.dll" target="lib\NestedHtmlWriterPortable.dll" />
     </files>
 </package>

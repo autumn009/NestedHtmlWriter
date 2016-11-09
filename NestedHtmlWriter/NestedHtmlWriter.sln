@@ -7,6 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		arc.cmd = arc.cmd
 		NestedHtmlWriter.1.2.1.nupkg = NestedHtmlWriter.1.2.1.nupkg
 		NestedHtmlWriter.1.2.1.nuspec = NestedHtmlWriter.1.2.1.nuspec
+		NestedHtmlWriter.1.2.2.nupkg = NestedHtmlWriter.1.2.2.nupkg
 		nhw001.txt = nhw001.txt
 		uploadDocs.cmd = uploadDocs.cmd
 	EndProjectSection
